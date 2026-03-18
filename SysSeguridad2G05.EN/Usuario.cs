@@ -12,12 +12,12 @@ namespace SysSeguridad2G05.EN
         public int Id { get; set; }
         [ForeignKey("Rol")]
         [Required(ErrorMessage = "Rol es obligatorio")]
-        [Display(Name ="Rol")]
+        [Display(Name = "Rol")]
         public int IdRol { get; set; }
 
-        [Required(ErrorMessage ="El nombre de usuario es obligatorio")]
-        [StringLength(40, ErrorMessage ="Maximo 40 caracteres")]
-        [Display(Name ="Nombre Usuario")]
+        [Required(ErrorMessage = "El nombre de usuario es obligatorio")]
+        [StringLength(40, ErrorMessage = "Maximo 40 caracteres")]
+        [Display(Name = "Nombre Usuario")]
         public string Nombre { get; set; }
 
         [Required(ErrorMessage = "El Apellido de usuario es obligatorio")]
@@ -36,13 +36,25 @@ namespace SysSeguridad2G05.EN
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage ="Estado es obligatorio")]
+        [Required(ErrorMessage = "Estado es obligatorio")]
         public byte Status { get; set; }
 
-        [Display(Name ="Fecha Registro")]
+        [Display(Name = "Fecha Registro")]
         public DateTime FechaRegistro { get; set; }
         public Rol Rol { get; set; }
+
+        [NotMapped]
         public int Top_Aux { get; set; }
+
+        [NotMapped]
+        [Required(ErrorMessage = "Confirmar Password es obligatorio")]
+        [StringLength(40, ErrorMessage = "Maximo 100 caracteres")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Password y Confirmar password deben ser iguales")]
+        [Display(Name = "Confirmar Password")]
         public string ConfirmPassword_aux { get; set; }
     }
+
+    
 }
+    
